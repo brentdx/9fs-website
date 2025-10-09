@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>9 Figure Science - Coming Soon</title>
+    <title>Careers - 9 Figure Science</title>
     <style>
         * {
             margin: 0;
@@ -14,30 +14,125 @@
         body {
             background-color: white;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+            padding: 40px 20px;
         }
         
         .container {
-            text-align: center;
             max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .logo-link {
+            display: inline-block;
+            margin-bottom: 20px;
         }
         
         .logo {
-            max-width: 600px;
+            max-width: 400px;
             width: 100%;
             height: auto;
+        }
+        
+        h1 {
+            color: #2e7d32;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            color: #2e7d32;
+            font-size: 28px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        
+        h3 {
+            color: #333;
+            font-size: 22px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .job-card {
+            background: #f9f9f9;
+            border-left: 4px solid #2e7d32;
+            padding: 30px;
             margin-bottom: 40px;
+            border-radius: 4px;
+        }
+        
+        .job-header {
+            margin-bottom: 25px;
+        }
+        
+        .job-title {
+            font-size: 32px;
+            color: #2e7d32;
+            margin-bottom: 15px;
+        }
+        
+        .job-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 16px;
+            color: #666;
+        }
+        
+        .job-meta span {
+            display: flex;
+            align-items: center;
+        }
+        
+        .job-meta strong {
+            color: #333;
+            margin-right: 5px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+        
+        .apply-section {
+            background: #2e7d32;
+            color: white;
+            padding: 25px;
+            border-radius: 4px;
+            margin-top: 40px;
+        }
+        
+        .apply-section h3 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .apply-section a {
+            color: white;
+            font-weight: 600;
         }
         
         .contact {
-            font-size: 18px;
-            color: #333;
-            margin-top: 20px;
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid #e0e0e0;
+            font-size: 16px;
         }
         
         .contact a {
@@ -49,36 +144,112 @@
         .contact a:hover {
             text-decoration: underline;
         }
-        
-        .careers-link {
-            margin-top: 30px;
-        }
-        
-        .careers-link a {
-            display: inline-block;
-            background-color: #2e7d32;
-            color: white;
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: 500;
-            transition: background-color 0.3s;
-        }
-        
-        .careers-link a:hover {
-            background-color: #1b5e20;
-            text-decoration: none;
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 28px;
+            }
+            
+            .job-title {
+                font-size: 24px;
+            }
+            
+            .job-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <img src="9fs-logo.png" alt="9 Figure Science Coming Soon" class="logo">
-        <div class="contact">
-            For support, reach out to <a href="mailto:brent@9fs.ai">brent@9fs.ai</a>
+        <div class="header">
+            <a href="index.html" class="logo-link">
+                <img src="9fs-logo.png" alt="9 Figure Science" class="logo">
+            </a>
+            <h1>Join Our Team</h1>
         </div>
-        <div class="careers-link">
-            <a href="careers.html">We're Hiring</a>
+
+        <div class="job-card">
+            <div class="job-header">
+                <h2 class="job-title">Machine Learning Data Science Internship</h2>
+                <div class="job-meta">
+                    <span><strong>Location:</strong> Remote</span>
+                    <span><strong>Compensation:</strong> $20-25/hour</span>
+                    <span><strong>Type:</strong> Full-time with path to permanent role</span>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>About Us</h3>
+                <p>We're a fast-growing stealth startup that's already hit $1M+ in ARR, building the future of marketing technology. We're at the stage where every team member has a massive impact, and we're looking for someone who wants to build from the ground level rather than just observe.</p>
+            </div>
+
+            <div class="section">
+                <h3>The Role</h3>
+                <p>This isn't a typical internship where you'll be cleaning datasets in the corner. You'll be doing real machine learning work that ships to production and directly impacts our product and customers. For the right candidate, this role will convert to a full-time position on our founding team.</p>
+                <p>You'll work closely with founding engineers and product managers from successful tech companies who are invested in your growth and impact.</p>
+            </div>
+
+            <div class="section">
+                <h3>What You'll Work On</h3>
+                <ul>
+                    <li><strong>Experimentation & Causal Inference:</strong> Design and analyze experiments using Bayesian methods and causal inference techniques to optimize marketing strategies</li>
+                    <li><strong>Recommendation Systems:</strong> Build intelligent systems that drive user engagement and business outcomes</li>
+                    <li><strong>Machine Learning Models:</strong> Develop and deploy ML models that solve real business problems</li>
+                    <li><strong>Multi-Armed Bandits:</strong> Implement adaptive algorithms for dynamic optimization</li>
+                    <li><strong>End-to-End Ownership:</strong> Take projects from research to production deployment</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>What We're Looking For</h3>
+                <p><strong>Required:</strong></p>
+                <ul>
+                    <li>Strong machine learning fundamentals and hands-on experience</li>
+                    <li>Demonstrated work in Bayesian statistics and causal inference (we want to see projects, papers, or real applications)</li>
+                    <li>Ability to translate research into production code</li>
+                    <li>Track record of building things that matter—we care more about what you've shipped than where you went to school</li>
+                </ul>
+                <p><strong>Bonus Points:</strong></p>
+                <ul>
+                    <li>Experience with multi-armed bandits, A/B testing frameworks, or experimentation platforms</li>
+                    <li>Contributions to open source ML projects</li>
+                    <li>Research experience or publications</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>What We Offer</h3>
+                <ul>
+                    <li><strong>Real Impact:</strong> Your work will directly influence product direction and customer outcomes</li>
+                    <li><strong>Learning:</strong> Work alongside experienced founders and engineers who will mentor you</li>
+                    <li><strong>Growth Path:</strong> This role is designed to convert to full-time for strong performers</li>
+                    <li><strong>Flexibility:</strong> Fully remote with async-friendly culture</li>
+                    <li><strong>Ground Floor Opportunity:</strong> Join a proven startup (7-figure ARR) early enough to shape its future</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>Start Date</h3>
+                <p>ASAP—we're moving fast and want you to start making an impact immediately.</p>
+            </div>
+
+            <div class="apply-section">
+                <h3>How to Apply</h3>
+                <p>Send us:</p>
+                <ol>
+                    <li>Your resume</li>
+                    <li>Links to 1-2 projects that showcase your ML work (GitHub repos, papers, blog posts, etc.)</li>
+                    <li>A brief note (few paragraphs) about the most interesting problem you've solved with Bayesian methods or causal inference</li>
+                </ol>
+                <p style="margin-top: 20px;">We review applications on a rolling basis and will get back to you quickly.</p>
+                <p style="margin-top: 15px;"><strong>Apply: <a href="mailto:brent@9fs.ai">brent@9fs.ai</a></strong></p>
+            </div>
+        </div>
+
+        <div class="contact">
+            For general inquiries, reach out to <a href="mailto:brent@9fs.ai">brent@9fs.ai</a>
         </div>
     </div>
 </body>
