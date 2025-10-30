@@ -14,34 +14,14 @@
         }
 
         :root {
-            /* Color System - Inspired by Pixis */
             --color-dark: #072929;
             --color-light-bg: #F5F5F0;
             --color-accent: #EBEAE1;
             --color-text: #072929;
             --color-text-light: #EBEAE1;
             --color-orange: #FF6B35;
-
-            /* Typography */
-            --font-display: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-            --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-
-            /* Spacing */
-            --spacing-xs: 0.5rem;
-            --spacing-sm: 1rem;
-            --spacing-md: 2rem;
-            --spacing-lg: 4rem;
-            --spacing-xl: 6rem;
-
-            /* Border Radius */
-            --radius-sm: 8px;
-            --radius-md: 12px;
-            --radius-lg: 24px;
-            --radius-full: 100000px;
-
-            /* Transitions */
-            --transition-fast: 0.2s ease;
-            --transition-base: 0.3s ease;
+            --color-purple: #9B59B6;
+            --color-blue: #3498DB;
         }
 
         html {
@@ -49,7 +29,7 @@
         }
 
         body {
-            font-family: var(--font-body);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
             color: var(--color-text);
             background-color: var(--color-light-bg);
             line-height: 1.6;
@@ -57,32 +37,14 @@
             overflow-x: hidden;
         }
 
-        /* Typography */
-        h1, h2, h3, h4, h5, h6 {
-            font-family: var(--font-display);
+        h1, h2, h3 {
             font-weight: 600;
             line-height: 1.1;
-            text-wrap: balance;
         }
 
-        h1 {
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            letter-spacing: -0.02em;
-        }
-
-        h2 {
-            font-size: clamp(2rem, 5vw, 3rem);
-            letter-spacing: -0.01em;
-        }
-
-        h3 {
-            font-size: clamp(1.5rem, 3vw, 2rem);
-        }
-
-        p {
-            text-wrap: pretty;
-            max-width: 65ch;
-        }
+        h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); letter-spacing: -0.02em; }
+        h2 { font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -0.01em; }
+        h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
 
         /* Container */
         .container {
@@ -99,7 +61,6 @@
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(7, 41, 41, 0.1);
             z-index: 1000;
-            transition: var(--transition-base);
         }
 
         .header__container {
@@ -119,11 +80,6 @@
             color: var(--color-dark);
             font-weight: 600;
             font-size: 1.5rem;
-            transition: var(--transition-fast);
-        }
-
-        .header__logo:hover {
-            opacity: 0.8;
         }
 
         .header__logo img {
@@ -147,23 +103,11 @@
             color: var(--color-dark);
             text-decoration: none;
             font-weight: 500;
-            position: relative;
-            transition: var(--transition-fast);
+            transition: opacity 0.2s;
         }
 
-        .nav__link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--color-dark);
-            transition: width var(--transition-fast);
-        }
-
-        .nav__link:hover::after {
-            width: 100%;
+        .nav__link:hover {
+            opacity: 0.7;
         }
 
         /* Buttons */
@@ -172,14 +116,13 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.75rem 1.5rem;
-            border-radius: var(--radius-full);
+            border-radius: 100px;
             font-weight: 500;
             text-decoration: none;
-            transition: var(--transition-base);
+            transition: all 0.3s ease;
             cursor: pointer;
             border: none;
             font-size: 1rem;
-            white-space: nowrap;
         }
 
         .btn--primary {
@@ -210,25 +153,25 @@
             font-size: 1.125rem;
         }
 
-        /* Hero Section */
+        /* Hero Section with Carousel */
         .hero {
             min-height: 90vh;
             display: flex;
             align-items: center;
             position: relative;
             overflow: hidden;
+            padding: 4rem 0;
         }
 
-        .hero__container {
+        .hero__content-wrapper {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 3rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
             align-items: center;
-            padding: var(--spacing-xl) 0;
         }
 
-        .hero__content {
-            max-width: 800px;
+        .hero__text {
+            max-width: 600px;
         }
 
         .hero__eyebrow {
@@ -236,7 +179,7 @@
             padding: 0.5rem 1rem;
             background-color: var(--color-accent);
             color: var(--color-dark);
-            border-radius: var(--radius-full);
+            border-radius: 100px;
             font-size: 0.875rem;
             font-weight: 500;
             margin-bottom: 1.5rem;
@@ -252,7 +195,7 @@
             font-size: 1.25rem;
             color: rgba(7, 41, 41, 0.8);
             margin-bottom: 2rem;
-            max-width: 600px;
+            max-width: 500px;
         }
 
         .hero__actions {
@@ -261,121 +204,318 @@
             flex-wrap: wrap;
         }
 
-        /* Features Section */
-        .features {
-            padding: var(--spacing-xl) 0;
-            background-color: var(--color-dark);
-            color: var(--color-text-light);
+        /* Card Carousel */
+        .carousel {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
         }
 
-        .features__header {
-            text-align: center;
-            margin-bottom: var(--spacing-lg);
+        .carousel__track {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding: 1rem 0;
         }
 
-        .features__title {
-            color: var(--color-accent);
+        .carousel__track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .carousel__card {
+            flex: 0 0 100%;
+            scroll-snap-align: start;
+            background: linear-gradient(135deg, var(--color-orange), var(--color-purple));
+            border-radius: 24px;
+            padding: 2rem;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .carousel__card:hover {
+            transform: scale(1.02);
+        }
+
+        .carousel__card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .carousel__card-header {
+            position: relative;
+            z-index: 1;
+        }
+
+        .carousel__card-title {
+            color: white;
+            font-size: 2rem;
             margin-bottom: 1rem;
         }
 
-        .features__subtitle {
+        .carousel__card-text {
+            color: rgba(255, 255, 255, 0.9);
             font-size: 1.125rem;
-            color: rgba(235, 234, 225, 0.8);
-            max-width: 700px;
-            margin: 0 auto;
+            line-height: 1.6;
         }
 
-        .features__grid {
+        .carousel__card-footer {
+            position: relative;
+            z-index: 1;
+        }
+
+        .carousel__dots {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .carousel__dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(7, 41, 41, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel__dot.active {
+            background-color: var(--color-dark);
+            width: 30px;
+            border-radius: 5px;
+        }
+
+        /* Logo Marquee */
+        .logo-marquee {
+            padding: 3rem 0;
+            background-color: white;
+            overflow: hidden;
+        }
+
+        .marquee {
+            display: flex;
+            overflow: hidden;
+            user-select: none;
+            gap: 4rem;
+        }
+
+        .marquee__content {
+            flex-shrink: 0;
+            display: flex;
+            justify-content: space-around;
+            gap: 4rem;
+            min-width: 100%;
+            animation: scroll 30s linear infinite;
+        }
+
+        @keyframes scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-100%); }
+        }
+
+        .marquee__item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-dark);
+            opacity: 0.6;
+            white-space: nowrap;
+        }
+
+        /* Floating Cards Section */
+        .floating-cards {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .floating-cards__grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
 
-        .feature__card {
-            background-color: rgba(235, 234, 225, 0.05);
-            border: 1px solid rgba(235, 234, 225, 0.1);
-            border-radius: var(--radius-lg);
-            padding: 2rem;
-            transition: var(--transition-base);
+        .floating-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(7, 41, 41, 0.1);
+            position: relative;
         }
 
-        .feature__card:hover {
-            transform: translateY(-4px);
-            background-color: rgba(235, 234, 225, 0.08);
-            border-color: rgba(235, 234, 225, 0.2);
+        .floating-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(7, 41, 41, 0.1);
         }
 
-        .feature__icon {
-            width: 48px;
-            height: 48px;
-            background-color: var(--color-accent);
-            border-radius: var(--radius-md);
+        .floating-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-orange), var(--color-purple), var(--color-blue));
+            border-radius: 24px 24px 0 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .floating-card:hover::before {
+            opacity: 1;
+        }
+
+        .floating-card__icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--color-orange), var(--color-purple));
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 2rem;
             margin-bottom: 1.5rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating-card:nth-child(2) .floating-card__icon {
+            animation-delay: 0.5s;
+        }
+
+        .floating-card:nth-child(3) .floating-card__icon {
+            animation-delay: 1s;
+        }
+
+        .floating-card__title {
+            color: var(--color-dark);
+            margin-bottom: 1rem;
             font-size: 1.5rem;
         }
 
-        .feature__title {
-            color: var(--color-accent);
-            margin-bottom: 0.75rem;
-            font-size: 1.5rem;
-        }
-
-        .feature__description {
-            color: rgba(235, 234, 225, 0.7);
+        .floating-card__description {
+            color: rgba(7, 41, 41, 0.7);
             line-height: 1.7;
         }
 
         /* Stats Section */
         .stats {
-            padding: var(--spacing-xl) 0;
+            padding: 6rem 0;
+            background-color: var(--color-dark);
+            color: var(--color-text-light);
         }
 
         .stats__grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 4rem;
             text-align: center;
         }
 
+        .stat {
+            position: relative;
+        }
+
         .stat__number {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(3rem, 6vw, 5rem);
             font-weight: 700;
-            color: var(--color-dark);
+            color: var(--color-accent);
             line-height: 1;
             margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--color-accent), var(--color-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .stat__label {
             font-size: 1.125rem;
+            color: rgba(235, 234, 225, 0.8);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 0;
+        }
+
+        .features__header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .features__title {
+            margin-bottom: 1rem;
+        }
+
+        .features__subtitle {
+            font-size: 1.25rem;
             color: rgba(7, 41, 41, 0.7);
-            font-weight: 500;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         /* CTA Section */
         .cta {
-            padding: var(--spacing-xl) 0;
-            background-color: var(--color-accent);
+            padding: 8rem 0;
+            background: linear-gradient(135deg, var(--color-dark) 0%, #0a4040 100%);
+            color: var(--color-text-light);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
-        .cta__container {
-            text-align: center;
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        .cta__content {
+            position: relative;
+            z-index: 1;
             max-width: 800px;
             margin: 0 auto;
         }
 
         .cta__title {
-            margin-bottom: 1rem;
+            color: var(--color-accent);
+            margin-bottom: 1.5rem;
         }
 
         .cta__description {
             font-size: 1.25rem;
-            color: rgba(7, 41, 41, 0.8);
-            margin-bottom: 2rem;
-            margin-left: auto;
-            margin-right: auto;
+            color: rgba(235, 234, 225, 0.9);
+            margin-bottom: 2.5rem;
         }
 
         .cta__actions {
@@ -385,22 +525,38 @@
             flex-wrap: wrap;
         }
 
+        .cta .btn--primary {
+            background-color: white;
+            color: var(--color-dark);
+            border-color: white;
+        }
+
+        .cta .btn--primary:hover {
+            background-color: var(--color-accent);
+        }
+
+        .cta .btn--secondary {
+            border-color: white;
+            color: white;
+        }
+
+        .cta .btn--secondary:hover {
+            background-color: white;
+            color: var(--color-dark);
+        }
+
         /* Footer */
         .footer {
             background-color: var(--color-dark);
             color: var(--color-text-light);
-            padding: var(--spacing-lg) 0 var(--spacing-md);
+            padding: 4rem 0 2rem;
         }
 
         .footer__container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 3rem;
-            margin-bottom: var(--spacing-md);
-        }
-
-        .footer__brand {
-            max-width: 300px;
+            margin-bottom: 3rem;
         }
 
         .footer__logo {
@@ -416,7 +572,6 @@
 
         .footer__logo img {
             height: 40px;
-            width: auto;
             filter: brightness(0) invert(1);
         }
 
@@ -442,7 +597,7 @@
         .footer__link {
             color: rgba(235, 234, 225, 0.7);
             text-decoration: none;
-            transition: var(--transition-fast);
+            transition: color 0.2s;
         }
 
         .footer__link:hover {
@@ -451,55 +606,27 @@
 
         .footer__bottom {
             border-top: 1px solid rgba(235, 234, 225, 0.1);
-            padding-top: var(--spacing-md);
+            padding-top: 2rem;
             text-align: center;
             color: rgba(235, 234, 225, 0.5);
             font-size: 0.875rem;
         }
 
-        /* Mobile Menu */
-        .mobile-menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 0.25rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .mobile-menu-toggle span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background-color: var(--color-dark);
-            transition: var(--transition-fast);
-        }
-
-        /* Responsive */
+        /* Mobile Responsive */
         @media (max-width: 768px) {
             .nav__links {
                 display: none;
             }
 
-            .mobile-menu-toggle {
-                display: flex;
+            .hero__content-wrapper {
+                grid-template-columns: 1fr;
             }
 
-            .hero__container {
-                padding: var(--spacing-md) 0;
+            .carousel {
+                max-width: 100%;
             }
 
-            .hero__actions {
-                flex-direction: column;
-            }
-
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .features__grid {
+            .floating-cards__grid {
                 grid-template-columns: 1fr;
             }
 
@@ -508,43 +635,9 @@
                 gap: 2rem;
             }
 
-            .cta__actions {
-                flex-direction: column;
-            }
-
             .footer__container {
                 grid-template-columns: 1fr;
-                gap: 2rem;
             }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-in {
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-
-        /* Utility Classes */
-        .text-center {
-            text-align: center;
-        }
-
-        .mb-1 {
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .mb-2 {
-            margin-bottom: var(--spacing-md);
         }
     </style>
 </head>
@@ -564,20 +657,15 @@
                     <li><a href="#contact" class="nav__link">Contact</a></li>
                 </ul>
                 <a href="#contact" class="btn btn--primary">Get Started</a>
-                <button class="mobile-menu-toggle" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Animated Carousel -->
     <section class="hero">
         <div class="container">
-            <div class="hero__container">
-                <div class="hero__content animate-in">
+            <div class="hero__content-wrapper">
+                <div class="hero__text">
                     <span class="hero__eyebrow">Welcome to 9FS</span>
                     <h1 class="hero__title">Where Innovation Meets Excellence</h1>
                     <p class="hero__description">
@@ -588,6 +676,127 @@
                         <a href="#contact" class="btn btn--primary btn--large">Get Started Today</a>
                         <a href="#features" class="btn btn--secondary btn--large">Learn More</a>
                     </div>
+                </div>
+
+                <!-- Animated Card Carousel -->
+                <div class="carousel">
+                    <div class="carousel__track" id="carouselTrack">
+                        <div class="carousel__card" style="background: linear-gradient(135deg, #FF6B35, #9B59B6);">
+                            <div class="carousel__card-header">
+                                <h3 class="carousel__card-title">Transform Your Business</h3>
+                                <p class="carousel__card-text">Unlock unprecedented growth with our innovative solutions designed for the modern enterprise.</p>
+                            </div>
+                            <div class="carousel__card-footer">
+                                <div style="color: white; font-weight: 600;">→ Learn More</div>
+                            </div>
+                        </div>
+                        <div class="carousel__card" style="background: linear-gradient(135deg, #3498DB, #8E44AD);">
+                            <div class="carousel__card-header">
+                                <h3 class="carousel__card-title">Accelerate Growth</h3>
+                                <p class="carousel__card-text">Scale your operations with confidence using our proven methodologies and cutting-edge technology.</p>
+                            </div>
+                            <div class="carousel__card-footer">
+                                <div style="color: white; font-weight: 600;">→ Explore Solutions</div>
+                            </div>
+                        </div>
+                        <div class="carousel__card" style="background: linear-gradient(135deg, #E74C3C, #C0392B);">
+                            <div class="carousel__card-header">
+                                <h3 class="carousel__card-title">Drive Results</h3>
+                                <p class="carousel__card-text">Achieve measurable outcomes with data-driven strategies and expert guidance every step of the way.</p>
+                            </div>
+                            <div class="carousel__card-footer">
+                                <div style="color: white; font-weight: 600;">→ See Case Studies</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel__dots">
+                        <div class="carousel__dot active" data-slide="0"></div>
+                        <div class="carousel__dot" data-slide="1"></div>
+                        <div class="carousel__dot" data-slide="2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Logo Marquee -->
+    <section class="logo-marquee">
+        <div class="marquee">
+            <div class="marquee__content">
+                <div class="marquee__item">★ INNOVATIVE</div>
+                <div class="marquee__item">★ TRUSTED</div>
+                <div class="marquee__item">★ SCALABLE</div>
+                <div class="marquee__item">★ SECURE</div>
+                <div class="marquee__item">★ RESULTS-DRIVEN</div>
+            </div>
+            <div class="marquee__content" aria-hidden="true">
+                <div class="marquee__item">★ INNOVATIVE</div>
+                <div class="marquee__item">★ TRUSTED</div>
+                <div class="marquee__item">★ SCALABLE</div>
+                <div class="marquee__item">★ SECURE</div>
+                <div class="marquee__item">★ RESULTS-DRIVEN</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Cards Section -->
+    <section class="floating-cards" id="features">
+        <div class="container">
+            <div class="features__header">
+                <h2 class="features__title">What Makes Us Different</h2>
+                <p class="features__subtitle">
+                    Comprehensive solutions designed to accelerate your business growth
+                    and deliver measurable results.
+                </p>
+            </div>
+            <div class="floating-cards__grid">
+                <div class="floating-card">
+                    <div class="floating-card__icon">🚀</div>
+                    <h3 class="floating-card__title">Lightning Fast Performance</h3>
+                    <p class="floating-card__description">
+                        Experience blazing-fast speeds and industry-leading reliability.
+                        We ensure your operations run smoothly 24/7 with zero downtime.
+                    </p>
+                </div>
+                <div class="floating-card">
+                    <div class="floating-card__icon">🎯</div>
+                    <h3 class="floating-card__title">Results That Matter</h3>
+                    <p class="floating-card__description">
+                        Data-driven strategies that deliver real, measurable outcomes.
+                        Track your success with comprehensive analytics and insights.
+                    </p>
+                </div>
+                <div class="floating-card">
+                    <div class="floating-card__icon">🔒</div>
+                    <h3 class="floating-card__title">Enterprise Security</h3>
+                    <p class="floating-card__description">
+                        Bank-level security with full compliance standards.
+                        Your data is protected with the latest encryption and protocols.
+                    </p>
+                </div>
+                <div class="floating-card">
+                    <div class="floating-card__icon">💡</div>
+                    <h3 class="floating-card__title">Innovation First</h3>
+                    <p class="floating-card__description">
+                        Cutting-edge technology that keeps you ahead of the competition.
+                        Stay at the forefront of your industry with our solutions.
+                    </p>
+                </div>
+                <div class="floating-card">
+                    <div class="floating-card__icon">🤝</div>
+                    <h3 class="floating-card__title">Expert Support</h3>
+                    <p class="floating-card__description">
+                        Dedicated team of experts ready to assist you anytime.
+                        Get personalized support and guidance when you need it most.
+                    </p>
+                </div>
+                <div class="floating-card">
+                    <div class="floating-card__icon">📈</div>
+                    <h3 class="floating-card__title">Scale Effortlessly</h3>
+                    <p class="floating-card__description">
+                        Solutions that grow with your business needs seamlessly.
+                        Scale from startup to enterprise without missing a beat.
+                    </p>
                 </div>
             </div>
         </div>
@@ -617,82 +826,17 @@
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <div class="container">
-            <div class="features__header">
-                <h2 class="features__title">What We Offer</h2>
-                <p class="features__subtitle">
-                    Comprehensive solutions designed to accelerate your business growth
-                    and deliver measurable results.
-                </p>
-            </div>
-            <div class="features__grid">
-                <div class="feature__card">
-                    <div class="feature__icon">🚀</div>
-                    <h3 class="feature__title">Fast & Reliable</h3>
-                    <p class="feature__description">
-                        Lightning-fast performance with industry-leading reliability.
-                        We ensure your operations run smoothly 24/7.
-                    </p>
-                </div>
-                <div class="feature__card">
-                    <div class="feature__icon">🎯</div>
-                    <h3 class="feature__title">Results-Driven</h3>
-                    <p class="feature__description">
-                        Data-driven strategies that deliver real, measurable outcomes.
-                        Track your success with comprehensive analytics.
-                    </p>
-                </div>
-                <div class="feature__card">
-                    <div class="feature__icon">🔒</div>
-                    <h3 class="feature__title">Secure & Compliant</h3>
-                    <p class="feature__description">
-                        Enterprise-grade security with full compliance standards.
-                        Your data is protected with the latest security measures.
-                    </p>
-                </div>
-                <div class="feature__card">
-                    <div class="feature__icon">💡</div>
-                    <h3 class="feature__title">Innovative Solutions</h3>
-                    <p class="feature__description">
-                        Cutting-edge technology that keeps you ahead of the competition.
-                        Stay at the forefront of your industry.
-                    </p>
-                </div>
-                <div class="feature__card">
-                    <div class="feature__icon">🤝</div>
-                    <h3 class="feature__title">Expert Support</h3>
-                    <p class="feature__description">
-                        Dedicated team of experts ready to assist you anytime.
-                        Get personalized support when you need it most.
-                    </p>
-                </div>
-                <div class="feature__card">
-                    <div class="feature__icon">📈</div>
-                    <h3 class="feature__title">Scalable Growth</h3>
-                    <p class="feature__description">
-                        Solutions that grow with your business needs.
-                        Scale effortlessly from startup to enterprise.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- CTA Section -->
     <section class="cta" id="contact">
-        <div class="container">
-            <div class="cta__container">
-                <h2 class="cta__title">Ready to Get Started?</h2>
-                <p class="cta__description">
-                    Join hundreds of satisfied clients who have transformed their business with 9FS.
-                    Let's build something amazing together.
-                </p>
-                <div class="cta__actions">
-                    <a href="mailto:contact@9fs.com" class="btn btn--primary btn--large">Contact Us</a>
-                    <a href="careers.html" class="btn btn--secondary btn--large">View Careers</a>
-                </div>
+        <div class="cta__content">
+            <h2 class="cta__title">Ready to Transform Your Business?</h2>
+            <p class="cta__description">
+                Join hundreds of satisfied clients who have transformed their business with 9FS.
+                Let's build something amazing together.
+            </p>
+            <div class="cta__actions">
+                <a href="mailto:contact@9fs.com" class="btn btn--primary btn--large">Get Started Now</a>
+                <a href="careers.html" class="btn btn--secondary btn--large">View Careers</a>
             </div>
         </div>
     </section>
@@ -745,15 +889,35 @@
     </footer>
 
     <script>
-        // Simple mobile menu toggle (can be enhanced)
-        document.querySelector('.mobile-menu-toggle')?.addEventListener('click', function() {
-            const nav = document.querySelector('.nav__links');
-            if (nav) {
-                nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
-            }
+        // Carousel functionality
+        const track = document.getElementById('carouselTrack');
+        const dots = document.querySelectorAll('.carousel__dot');
+        let currentSlide = 0;
+        const totalSlides = 3;
+
+        function updateCarousel(index) {
+            track.scrollTo({
+                left: track.offsetWidth * index,
+                behavior: 'smooth'
+            });
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+            currentSlide = index;
+        }
+
+        // Auto-advance carousel
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel(currentSlide);
+        }, 5000);
+
+        // Dot click handlers
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => updateCarousel(index));
         });
 
-        // Smooth scroll behavior for anchor links
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
