@@ -3,83 +3,769 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>9 Figure Science - Coming Soon</title>
+    <title>9FS - Where Innovation Meets Excellence</title>
+    <link rel="icon" href="9fs-logo.png" type="image/png">
     <style>
+        /* Reset & Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
-        body {
-            background-color: white;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
+
+        :root {
+            /* Color System - Inspired by Pixis */
+            --color-dark: #072929;
+            --color-light-bg: #F5F5F0;
+            --color-accent: #EBEAE1;
+            --color-text: #072929;
+            --color-text-light: #EBEAE1;
+            --color-orange: #FF6B35;
+
+            /* Typography */
+            --font-display: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+
+            /* Spacing */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 6rem;
+
+            /* Border Radius */
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 24px;
+            --radius-full: 100000px;
+
+            /* Transitions */
+            --transition-fast: 0.2s ease;
+            --transition-base: 0.3s ease;
         }
-        
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            background-color: var(--color-light-bg);
+            line-height: 1.6;
+            font-size: 16px;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-display);
+            font-weight: 600;
+            line-height: 1.1;
+            text-wrap: balance;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+        }
+
+        p {
+            text-wrap: pretty;
+            max-width: 65ch;
+        }
+
+        /* Container */
         .container {
-            text-align: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 clamp(1rem, 4vw, 4rem);
+        }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            background-color: rgba(245, 245, 240, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(7, 41, 41, 0.1);
+            z-index: 1000;
+            transition: var(--transition-base);
+        }
+
+        .header__container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem clamp(1rem, 4vw, 4rem);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header__logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--color-dark);
+            font-weight: 600;
+            font-size: 1.5rem;
+            transition: var(--transition-fast);
+        }
+
+        .header__logo:hover {
+            opacity: 0.8;
+        }
+
+        .header__logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .header__nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav__links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav__link {
+            color: var(--color-dark);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: var(--transition-fast);
+        }
+
+        .nav__link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-dark);
+            transition: width var(--transition-fast);
+        }
+
+        .nav__link:hover::after {
+            width: 100%;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-full);
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition-base);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            white-space: nowrap;
+        }
+
+        .btn--primary {
+            background-color: var(--color-dark);
+            color: var(--color-light-bg);
+            border: 1px solid var(--color-dark);
+        }
+
+        .btn--primary:hover {
+            background-color: var(--color-light-bg);
+            color: var(--color-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn--secondary {
+            background-color: transparent;
+            color: var(--color-dark);
+            border: 1px solid var(--color-dark);
+        }
+
+        .btn--secondary:hover {
+            background-color: var(--color-dark);
+            color: var(--color-light-bg);
+        }
+
+        .btn--large {
+            padding: 1rem 2rem;
+            font-size: 1.125rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero__container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+            padding: var(--spacing-xl) 0;
+        }
+
+        .hero__content {
             max-width: 800px;
         }
-        
-        .logo {
-            max-width: 600px;
-            width: 100%;
-            height: auto;
-            margin-bottom: 40px;
-        }
-        
-        .contact {
-            font-size: 18px;
-            color: #333;
-            margin-top: 20px;
-        }
-        
-        .contact a {
-            color: #2e7d32;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        
-        .contact a:hover {
-            text-decoration: underline;
-        }
-        
-        .careers-link {
-            margin-top: 30px;
-        }
-        
-        .careers-link a {
+
+        .hero__eyebrow {
             display: inline-block;
-            background-color: #2e7d32;
-            color: white;
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 4px;
+            padding: 0.5rem 1rem;
+            background-color: var(--color-accent);
+            color: var(--color-dark);
+            border-radius: var(--radius-full);
+            font-size: 0.875rem;
             font-weight: 500;
-            transition: background-color 0.3s;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
         }
-        
-        .careers-link a:hover {
-            background-color: #1b5e20;
+
+        .hero__title {
+            margin-bottom: 1.5rem;
+        }
+
+        .hero__description {
+            font-size: 1.25rem;
+            color: rgba(7, 41, 41, 0.8);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .hero__actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* Features Section */
+        .features {
+            padding: var(--spacing-xl) 0;
+            background-color: var(--color-dark);
+            color: var(--color-text-light);
+        }
+
+        .features__header {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .features__title {
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+        }
+
+        .features__subtitle {
+            font-size: 1.125rem;
+            color: rgba(235, 234, 225, 0.8);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .features__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature__card {
+            background-color: rgba(235, 234, 225, 0.05);
+            border: 1px solid rgba(235, 234, 225, 0.1);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            transition: var(--transition-base);
+        }
+
+        .feature__card:hover {
+            transform: translateY(-4px);
+            background-color: rgba(235, 234, 225, 0.08);
+            border-color: rgba(235, 234, 225, 0.2);
+        }
+
+        .feature__icon {
+            width: 48px;
+            height: 48px;
+            background-color: var(--color-accent);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .feature__title {
+            color: var(--color-accent);
+            margin-bottom: 0.75rem;
+            font-size: 1.5rem;
+        }
+
+        .feature__description {
+            color: rgba(235, 234, 225, 0.7);
+            line-height: 1.7;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .stats__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat__number {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            color: var(--color-dark);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat__label {
+            font-size: 1.125rem;
+            color: rgba(7, 41, 41, 0.7);
+            font-weight: 500;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: var(--spacing-xl) 0;
+            background-color: var(--color-accent);
+        }
+
+        .cta__container {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta__title {
+            margin-bottom: 1rem;
+        }
+
+        .cta__description {
+            font-size: 1.25rem;
+            color: rgba(7, 41, 41, 0.8);
+            margin-bottom: 2rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta__actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--color-dark);
+            color: var(--color-text-light);
+            padding: var(--spacing-lg) 0 var(--spacing-md);
+        }
+
+        .footer__container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .footer__brand {
+            max-width: 300px;
+        }
+
+        .footer__logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            color: var(--color-accent);
             text-decoration: none;
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+
+        .footer__logo img {
+            height: 40px;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer__description {
+            color: rgba(235, 234, 225, 0.7);
+            line-height: 1.7;
+        }
+
+        .footer__section-title {
+            color: var(--color-accent);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer__links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer__link {
+            color: rgba(235, 234, 225, 0.7);
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+
+        .footer__link:hover {
+            color: var(--color-accent);
+        }
+
+        .footer__bottom {
+            border-top: 1px solid rgba(235, 234, 225, 0.1);
+            padding-top: var(--spacing-md);
+            text-align: center;
+            color: rgba(235, 234, 225, 0.5);
+            font-size: 0.875rem;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 0.25rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background-color: var(--color-dark);
+            transition: var(--transition-fast);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav__links {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .hero__container {
+                padding: var(--spacing-md) 0;
+            }
+
+            .hero__actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .features__grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats__grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .cta__actions {
+                flex-direction: column;
+            }
+
+            .footer__container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        /* Utility Classes */
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-1 {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .mb-2 {
+            margin-bottom: var(--spacing-md);
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="9fs-logo.png" alt="9 Figure Science Coming Soon" class="logo">
-        <div class="contact">
-            For info, email <a href="mailto:brent@9fs.ai">brent@9fs.ai</a>
+    <!-- Header -->
+    <header class="header">
+        <div class="header__container">
+            <a href="/" class="header__logo">
+                <img src="9fs-logo.png" alt="9FS Logo">
+                <span>9FS</span>
+            </a>
+            <nav class="header__nav">
+                <ul class="nav__links">
+                    <li><a href="#features" class="nav__link">Features</a></li>
+                    <li><a href="#about" class="nav__link">About</a></li>
+                    <li><a href="careers.html" class="nav__link">Careers</a></li>
+                    <li><a href="#contact" class="nav__link">Contact</a></li>
+                </ul>
+                <a href="#contact" class="btn btn--primary">Get Started</a>
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
         </div>
-        <div class="careers-link">
-            <a href="careers.html">We're Hiring</a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero__container">
+                <div class="hero__content animate-in">
+                    <span class="hero__eyebrow">Welcome to 9FS</span>
+                    <h1 class="hero__title">Where Innovation Meets Excellence</h1>
+                    <p class="hero__description">
+                        We deliver cutting-edge solutions that transform businesses and drive results.
+                        Experience the future of technology with 9FS.
+                    </p>
+                    <div class="hero__actions">
+                        <a href="#contact" class="btn btn--primary btn--large">Get Started Today</a>
+                        <a href="#features" class="btn btn--secondary btn--large">Learn More</a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats" id="about">
+        <div class="container">
+            <div class="stats__grid">
+                <div class="stat">
+                    <div class="stat__number">100+</div>
+                    <div class="stat__label">Successful Projects</div>
+                </div>
+                <div class="stat">
+                    <div class="stat__number">50+</div>
+                    <div class="stat__label">Happy Clients</div>
+                </div>
+                <div class="stat">
+                    <div class="stat__number">99%</div>
+                    <div class="stat__label">Client Satisfaction</div>
+                </div>
+                <div class="stat">
+                    <div class="stat__number">24/7</div>
+                    <div class="stat__label">Support Available</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="features__header">
+                <h2 class="features__title">What We Offer</h2>
+                <p class="features__subtitle">
+                    Comprehensive solutions designed to accelerate your business growth
+                    and deliver measurable results.
+                </p>
+            </div>
+            <div class="features__grid">
+                <div class="feature__card">
+                    <div class="feature__icon">🚀</div>
+                    <h3 class="feature__title">Fast & Reliable</h3>
+                    <p class="feature__description">
+                        Lightning-fast performance with industry-leading reliability.
+                        We ensure your operations run smoothly 24/7.
+                    </p>
+                </div>
+                <div class="feature__card">
+                    <div class="feature__icon">🎯</div>
+                    <h3 class="feature__title">Results-Driven</h3>
+                    <p class="feature__description">
+                        Data-driven strategies that deliver real, measurable outcomes.
+                        Track your success with comprehensive analytics.
+                    </p>
+                </div>
+                <div class="feature__card">
+                    <div class="feature__icon">🔒</div>
+                    <h3 class="feature__title">Secure & Compliant</h3>
+                    <p class="feature__description">
+                        Enterprise-grade security with full compliance standards.
+                        Your data is protected with the latest security measures.
+                    </p>
+                </div>
+                <div class="feature__card">
+                    <div class="feature__icon">💡</div>
+                    <h3 class="feature__title">Innovative Solutions</h3>
+                    <p class="feature__description">
+                        Cutting-edge technology that keeps you ahead of the competition.
+                        Stay at the forefront of your industry.
+                    </p>
+                </div>
+                <div class="feature__card">
+                    <div class="feature__icon">🤝</div>
+                    <h3 class="feature__title">Expert Support</h3>
+                    <p class="feature__description">
+                        Dedicated team of experts ready to assist you anytime.
+                        Get personalized support when you need it most.
+                    </p>
+                </div>
+                <div class="feature__card">
+                    <div class="feature__icon">📈</div>
+                    <h3 class="feature__title">Scalable Growth</h3>
+                    <p class="feature__description">
+                        Solutions that grow with your business needs.
+                        Scale effortlessly from startup to enterprise.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="contact">
+        <div class="container">
+            <div class="cta__container">
+                <h2 class="cta__title">Ready to Get Started?</h2>
+                <p class="cta__description">
+                    Join hundreds of satisfied clients who have transformed their business with 9FS.
+                    Let's build something amazing together.
+                </p>
+                <div class="cta__actions">
+                    <a href="mailto:contact@9fs.com" class="btn btn--primary btn--large">Contact Us</a>
+                    <a href="careers.html" class="btn btn--secondary btn--large">View Careers</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__container">
+                <div class="footer__brand">
+                    <a href="/" class="footer__logo">
+                        <img src="9fs-logo.png" alt="9FS Logo">
+                        <span>9FS</span>
+                    </a>
+                    <p class="footer__description">
+                        Empowering businesses with innovative solutions and exceptional service.
+                        Your success is our mission.
+                    </p>
+                </div>
+                <div class="footer__section">
+                    <h4 class="footer__section-title">Company</h4>
+                    <ul class="footer__links">
+                        <li><a href="#about" class="footer__link">About Us</a></li>
+                        <li><a href="careers.html" class="footer__link">Careers</a></li>
+                        <li><a href="#contact" class="footer__link">Contact</a></li>
+                        <li><a href="#" class="footer__link">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer__section">
+                    <h4 class="footer__section-title">Services</h4>
+                    <ul class="footer__links">
+                        <li><a href="#features" class="footer__link">Solutions</a></li>
+                        <li><a href="#" class="footer__link">Consulting</a></li>
+                        <li><a href="#" class="footer__link">Support</a></li>
+                        <li><a href="#" class="footer__link">Resources</a></li>
+                    </ul>
+                </div>
+                <div class="footer__section">
+                    <h4 class="footer__section-title">Legal</h4>
+                    <ul class="footer__links">
+                        <li><a href="#" class="footer__link">Privacy Policy</a></li>
+                        <li><a href="#" class="footer__link">Terms of Service</a></li>
+                        <li><a href="#" class="footer__link">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2025 9FS. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple mobile menu toggle (can be enhanced)
+        document.querySelector('.mobile-menu-toggle')?.addEventListener('click', function() {
+            const nav = document.querySelector('.nav__links');
+            if (nav) {
+                nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+            }
+        });
+
+        // Smooth scroll behavior for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
