@@ -582,70 +582,65 @@
             height: 100%;
         }
 
-        /* Marquee with Sparkles */
-        .logo-marquee {
-            padding: 4rem 0;
+        /* Logo Grid Section */
+        .logo-section {
+            padding: 6rem 0;
             background: white;
-            overflow: hidden;
             position: relative;
         }
 
-        .logo-marquee::before,
-        .logo-marquee::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            width: 100px;
-            height: 100%;
-            z-index: 2;
+        .logo-section__header {
+            text-align: center;
+            margin-bottom: 4rem;
         }
 
-        .logo-marquee::before {
-            left: 0;
-            background: linear-gradient(90deg, white, transparent);
+        .logo-section__title {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: rgba(7, 41, 41, 0.6);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .logo-marquee::after {
-            right: 0;
-            background: linear-gradient(270deg, white, transparent);
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 3rem;
+            align-items: center;
+            justify-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .marquee {
-            display: flex;
-            overflow: hidden;
-            user-select: none;
-            gap: 4rem;
-        }
-
-        .marquee__content {
-            flex-shrink: 0;
-            display: flex;
-            justify-content: space-around;
-            gap: 4rem;
-            min-width: 100%;
-            animation: scroll 25s linear infinite;
-        }
-
-        @keyframes scroll {
-            from { transform: translateX(0); }
-            to { transform: translateX(-100%); }
-        }
-
-        .marquee__item {
+        .logo-grid__item {
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--color-dark);
-            white-space: nowrap;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            opacity: 0.5;
+            filter: grayscale(100%);
             position: relative;
-            animation: shimmer 3s ease-in-out infinite;
         }
 
-        @keyframes shimmer {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
+        .logo-grid__item:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+            transform: scale(1.1);
+        }
+
+        .logo-grid__item img {
+            max-width: 140px;
+            height: auto;
+            max-height: 60px;
+            object-fit: contain;
+        }
+
+        .logo-grid__placeholder {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--color-dark);
+            text-align: center;
         }
 
         /* Floating Cards with Dramatic Entrance */
@@ -1095,22 +1090,37 @@
         </div>
     </section>
 
-    <!-- Logo Marquee -->
-    <section class="logo-marquee">
-        <div class="marquee">
-            <div class="marquee__content">
-                <div class="marquee__item">★ INNOVATIVE</div>
-                <div class="marquee__item">★ TRUSTED</div>
-                <div class="marquee__item">★ SCALABLE</div>
-                <div class="marquee__item">★ SECURE</div>
-                <div class="marquee__item">★ RESULTS-DRIVEN</div>
+    <!-- Logo Section -->
+    <section class="logo-section">
+        <div class="container">
+            <div class="logo-section__header">
+                <h2 class="logo-section__title">Trusted by industry leaders</h2>
             </div>
-            <div class="marquee__content" aria-hidden="true">
-                <div class="marquee__item">★ INNOVATIVE</div>
-                <div class="marquee__item">★ TRUSTED</div>
-                <div class="marquee__item">★ SCALABLE</div>
-                <div class="marquee__item">★ SECURE</div>
-                <div class="marquee__item">★ RESULTS-DRIVEN</div>
+            <div class="logo-grid">
+                <div class="logo-grid__item">
+                    <div class="logo-grid__placeholder">Adobe</div>
+                </div>
+                <div class="logo-grid__item">
+                    <div class="logo-grid__placeholder">Microsoft</div>
+                </div>
+                <div class="logo-grid__item">
+                    <div class="logo-grid__placeholder">Google</div>
+                </div>
+                <div class="logo-grid__item">
+                    <div class="logo-grid__placeholder">Amazon</div>
+                </div>
+                <div class="logo-grid__item">
+                    <div class="logo-grid__placeholder">Meta</div>
+                </div>
+                <div class="logo-grid__item">
+                    <div class="logo-grid__placeholder">Apple</div>
+                </div>
+                <div class="logo-grid__item">
+                    <div class="logo-grid__placeholder">Netflix</div>
+                </div>
+                <div class="logo-grid__item">
+                    <div class="logo-grid__placeholder">Spotify</div>
+                </div>
             </div>
         </div>
     </section>
@@ -1211,7 +1221,7 @@
                 Let's build something amazing together.
             </p>
             <div class="cta__actions">
-                <a href="mailto:contact@9fs.com" class="btn btn--primary btn--large firework-trigger">Get Started Now</a>
+                <a href="mailto:contact@9fs.com" class="btn btn--primary btn--large">Get Started Now</a>
                 <a href="careers.html" class="btn btn--secondary btn--large">View Careers</a>
             </div>
         </div>
@@ -1395,13 +1405,23 @@
             }
         }
 
-        document.querySelectorAll('.firework-trigger').forEach(btn => {
+        // Fireworks in hero section only
+        document.querySelectorAll('.hero .firework-trigger').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
                 const rect = btn.getBoundingClientRect();
                 createFirework(rect.left + rect.width / 2, rect.top + rect.height / 2);
                 setTimeout(() => window.location.href = btn.href, 500);
             });
+        });
+
+        // Random fireworks in hero on click
+        const heroSection = document.querySelector('.hero');
+        heroSection.addEventListener('click', (e) => {
+            // Don't trigger on button clicks
+            if (e.target.closest('a, button')) return;
+
+            createFirework(e.clientX, e.clientY);
         });
 
         // Scroll Reveal
