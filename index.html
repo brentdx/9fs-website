@@ -71,11 +71,11 @@
         }
 
         h1, h2, h3 {
-            font-weight: 600;
+            font-weight: 700;
             line-height: 1.1;
         }
 
-        h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); letter-spacing: -0.02em; }
+        h1 { font-size: clamp(3rem, 10vw, 6.5rem); letter-spacing: -0.03em; }
         h2 { font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -0.01em; }
         h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
 
@@ -236,12 +236,13 @@
 
         /* Hero Section */
         .hero {
-            min-height: 90vh;
+            min-height: 95vh;
             display: flex;
             align-items: center;
             position: relative;
             overflow: hidden;
-            padding: 4rem 0;
+            padding: 6rem 0;
+            background: var(--color-light-bg);
         }
 
         .hero::before {
@@ -255,18 +256,73 @@
             animation: rotate 30s linear infinite;
         }
 
+        /* Floating Geometric Shapes */
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .floating-shape.circle-1 {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, rgba(255,107,53,0.6), rgba(233,30,99,0.6));
+            top: 15%;
+            left: 10%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-shape.circle-2 {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(155,89,182,0.6), rgba(52,152,219,0.6));
+            top: 60%;
+            left: 15%;
+            animation: float 8s ease-in-out infinite 1s;
+        }
+
+        .floating-shape.circle-3 {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, rgba(52,152,219,0.6), rgba(155,89,182,0.6));
+            top: 25%;
+            right: 20%;
+            animation: float 7s ease-in-out infinite 2s;
+            border-radius: 30px;
+        }
+
+        .floating-shape.circle-4 {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(233,30,99,0.6), rgba(255,107,53,0.6));
+            bottom: 25%;
+            right: 15%;
+            animation: float 5s ease-in-out infinite 1.5s;
+        }
+
+        .floating-shape.circle-5 {
+            width: 140px;
+            height: 140px;
+            background: linear-gradient(135deg, rgba(255,107,53,0.4), rgba(155,89,182,0.4));
+            top: 50%;
+            right: 10%;
+            animation: float 9s ease-in-out infinite 0.5s;
+            border-radius: 35px;
+        }
+
         .hero__content-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            display: flex;
+            justify-content: center;
             align-items: center;
             position: relative;
             z-index: 1;
+            text-align: center;
         }
 
         .hero__text {
-            max-width: 600px;
-            animation: fadeInLeft 0.8s ease-out;
+            max-width: 900px;
+            animation: fadeInUp 0.8s ease-out;
         }
 
         @keyframes fadeInLeft {
@@ -300,24 +356,72 @@
         }
 
         .hero__title {
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--color-dark), var(--color-purple));
+            margin-bottom: 2rem;
+            color: var(--color-dark);
+            line-height: 1.05;
+        }
+
+        .hero__title .gradient-text {
+            background: linear-gradient(135deg, #E91E63, #9C27B0, #673AB7);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            display: inline-block;
         }
 
         .hero__description {
-            font-size: 1.25rem;
-            color: rgba(7, 41, 41, 0.8);
-            margin-bottom: 2rem;
-            max-width: 500px;
+            font-size: 1.35rem;
+            color: rgba(7, 41, 41, 0.7);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
         }
 
         .hero__actions {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(7, 41, 41, 0.5);
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            z-index: 10;
+            animation: fadeInUp 0.8s ease-out 1s both;
+        }
+
+        .scroll-indicator::after {
+            content: '';
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, rgba(7, 41, 41, 0.3), transparent);
+            animation: scrollDown 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollDown {
+            0%, 100% {
+                transform: translateY(0);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateY(10px);
+                opacity: 1;
+            }
         }
 
         /* Card Carousel with 3D Effects */
@@ -959,59 +1063,35 @@
 
     <!-- Hero Section -->
     <section class="hero">
+        <!-- Floating Geometric Shapes -->
+        <div class="floating-shape circle-1"></div>
+        <div class="floating-shape circle-2"></div>
+        <div class="floating-shape circle-3"></div>
+        <div class="floating-shape circle-4"></div>
+        <div class="floating-shape circle-5"></div>
+
         <div class="container">
             <div class="hero__content-wrapper">
                 <div class="hero__text">
                     <span class="hero__eyebrow">Welcome to 9FS</span>
-                    <h1 class="hero__title">Where Innovation Meets Excellence</h1>
+                    <h1 class="hero__title">
+                        Where <span class="gradient-text">creativity</span><br>
+                        meets performance
+                    </h1>
                     <p class="hero__description">
-                        We deliver cutting-edge solutions that transform businesses and drive results.
-                        Experience the future of technology with 9FS.
+                        Transform your business with cutting-edge solutions that deliver measurable results. Experience the perfect blend of innovation and excellence.
                     </p>
                     <div class="hero__actions">
-                        <a href="#contact" class="btn btn--primary btn--large">Get Started Today</a>
+                        <a href="#contact" class="btn btn--primary btn--large firework-trigger">Talk to us</a>
                         <a href="#features" class="btn btn--secondary btn--large">Learn More</a>
                     </div>
                 </div>
-
-                <!-- Animated Card Carousel -->
-                <div class="carousel">
-                    <div class="carousel__track" id="carouselTrack">
-                        <div class="carousel__card" style="background: linear-gradient(135deg, #FF6B35, #9B59B6);">
-                            <div class="carousel__card-header">
-                                <h3 class="carousel__card-title">Transform Your Business</h3>
-                                <p class="carousel__card-text">Unlock unprecedented growth with our innovative solutions designed for the modern enterprise.</p>
-                            </div>
-                            <div class="carousel__card-footer">
-                                <div style="color: white; font-weight: 600; font-size: 1.1rem;">→ Learn More</div>
-                            </div>
-                        </div>
-                        <div class="carousel__card" style="background: linear-gradient(135deg, #3498DB, #8E44AD);">
-                            <div class="carousel__card-header">
-                                <h3 class="carousel__card-title">Accelerate Growth</h3>
-                                <p class="carousel__card-text">Scale your operations with confidence using our proven methodologies and cutting-edge technology.</p>
-                            </div>
-                            <div class="carousel__card-footer">
-                                <div style="color: white; font-weight: 600; font-size: 1.1rem;">→ Explore Solutions</div>
-                            </div>
-                        </div>
-                        <div class="carousel__card" style="background: linear-gradient(135deg, #E91E63, #9C27B0);">
-                            <div class="carousel__card-header">
-                                <h3 class="carousel__card-title">Drive Results</h3>
-                                <p class="carousel__card-text">Achieve measurable outcomes with data-driven strategies and expert guidance every step of the way.</p>
-                            </div>
-                            <div class="carousel__card-footer">
-                                <div style="color: white; font-weight: 600; font-size: 1.1rem;">→ See Case Studies</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel__dots">
-                        <div class="carousel__dot active" data-slide="0"></div>
-                        <div class="carousel__dot" data-slide="1"></div>
-                        <div class="carousel__dot" data-slide="2"></div>
-                    </div>
-                </div>
             </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            Scroll
         </div>
     </section>
 
@@ -1322,32 +1402,6 @@
                 createFirework(rect.left + rect.width / 2, rect.top + rect.height / 2);
                 setTimeout(() => window.location.href = btn.href, 500);
             });
-        });
-
-        // Carousel
-        const track = document.getElementById('carouselTrack');
-        const dots = document.querySelectorAll('.carousel__dot');
-        let currentSlide = 0;
-        const totalSlides = 3;
-
-        function updateCarousel(index) {
-            track.scrollTo({
-                left: track.offsetWidth * index,
-                behavior: 'smooth'
-            });
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === index);
-            });
-            currentSlide = index;
-        }
-
-        setInterval(() => {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            updateCarousel(currentSlide);
-        }, 5000);
-
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => updateCarousel(index));
         });
 
         // Scroll Reveal
